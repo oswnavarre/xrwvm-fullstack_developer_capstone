@@ -114,43 +114,28 @@ def get_dealerships(request, state="All"):
 # def get_dealer_reviews(request,dealer_id):
 # Method to view reviews for individual dealer
 def get_dealer_reviews(request, dealer_id):
-    # If dealer id has been provided
-    if dealer_id:
-        endpoint = "/fetchReviews/dealer/" + str(dealer_id)
+    # if dealer id has been provided
+    if (dealer_id):
+        endpoint = "/fetchReviews/dealer/"+str(dealer_id)
         reviews = get_request(endpoint)
-
         for review_detail in reviews:
-            # Call analyze_review_sentiments
-            # check if the response is valid
-            response = analyze_review_sentiments(
-                review_detail['review'])
+            response = analyze_review_sentiments(review_detail['review'])
             print(response)
-
-            if response is not None and 'sentiment' in response:
-                review_detail['sentiment'] = response['sentiment']
-            else:
-                # If there's no sentiment, default to 'neutral'
-                review_detail['sentiment'] = 'neutral'
-
+            review_detail['sentiment'] = response['sentiment']
         return JsonResponse({"status": 200, "reviews": reviews})
-
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
-
-
-
 
 # Create a `get_dealer_details` view to render the dealer details
 # def get_dealer_details(request, dealer_id):
 # Create a `get_dealer_details` view to render the dealer details
 def get_dealer_details(request, dealer_id):
-    if dealer_id:
-        endpoint = "/fetchDealer/" + str(dealer_id)
+    if (dealer_id):
+        endpoint = "/fetchDealer/"+str(dealer_id)
         dealership = get_request(endpoint)
         return JsonResponse({"status": 200, "dealer": dealership})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
-
 
 # Create a `add_review` view to submit a review
 # def add_review(request):
