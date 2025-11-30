@@ -11,6 +11,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
 
+
 class CarMake(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -27,6 +28,7 @@ class CarMake(models.Model):
 # - Year (IntegerField) with min value 2015 and max value 2023
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
+
 
 class CarModel(models.Model):
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
