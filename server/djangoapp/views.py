@@ -39,7 +39,7 @@ def login_user(request):
         data = {"userName": username, "status": "Authenticated"}
     return JsonResponse(data)
 
-# Create a `logout_request` view to handle sign out request
+
 def logout_request(request):
     if request.method == 'POST':  # Logout via POST for better CSRF protection
         logout(request)
@@ -50,7 +50,7 @@ def logout_request(request):
         {"success": False, "error": "Invalid request method"}, status=400
     )
 
-# Create a `registration` view to handle sign up request
+
 @csrf_exempt
 def registration(request):
     data = json.loads(request.body)
@@ -84,6 +84,7 @@ def registration(request):
         data = {"username": username, "error": "Already Registered"}
         return JsonResponse(data)
 
+
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
@@ -100,15 +101,17 @@ def get_cars(request):
         )
     return JsonResponse({"CarModels": cars})
 
+
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships
-def get_dealerships(request, state="All"):
+def get_dealerships(request, state = "All"):
     if(state == "All"):
         endpoint = "/fetchDealers"
     else:
         endpoint = "/fetchDealers/"+state
     dealerships = get_request(endpoint)
-    return JsonResponse({"status":200,"dealers":dealerships})
+    return JsonResponse({"status": 200, "dealers": dealerships})
+
 
 # Create a `get_dealer_reviews` view to render the reviews of a dealer
 # def get_dealer_reviews(request,dealer_id):
@@ -126,6 +129,7 @@ def get_dealer_reviews(request, dealer_id):
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
 
+
 # Create a `get_dealer_details` view to render the dealer details
 # def get_dealer_details(request, dealer_id):
 # Create a `get_dealer_details` view to render the dealer details
@@ -136,6 +140,7 @@ def get_dealer_details(request, dealer_id):
         return JsonResponse({"status": 200, "dealer": dealership})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
+
 
 # Create a `add_review` view to submit a review
 # def add_review(request):
