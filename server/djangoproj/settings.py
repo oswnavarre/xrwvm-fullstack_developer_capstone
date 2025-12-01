@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'https://onavarrete1-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.
+    'https://onavarrete1-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.'
     'proxy.cognitiveclass.ai']
 CSRF_TRUSTED_ORIGINS = [
     'https://onavarrete1-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.'
